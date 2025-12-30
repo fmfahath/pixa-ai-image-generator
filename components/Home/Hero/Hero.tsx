@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const Hero = () => {
@@ -15,6 +16,7 @@ const Hero = () => {
                         placeholder='Generate your dream Image...'
                         className='w-full h-full rounded-lg outline-none text-black block flex-1 placeholder:text-sm md:placeholder:text-base'
                     />
+                    <Button variant={'default'} size={'lg'}>Generate</Button>
                 </div>
             </div>
         </div>
