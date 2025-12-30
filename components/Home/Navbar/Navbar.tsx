@@ -1,7 +1,9 @@
+'use client';
+
 import { NavLinks } from '@/constant/constant'
 import { MenuIcon, SearchIcon, ShoppingCartIcon } from 'lucide-react'
 import Link from 'next/link'
-import React from 'react'
+import { useState, useEffect } from 'react';
 
 
 type Props = {
@@ -10,8 +12,26 @@ type Props = {
 
 const Navbar = ({ openNav }: Props) => {
 
+    const [navBg, setNavBg] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setNavBg(true);
+            }
+            else setNavBg(false);
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+
+    }, [])
+
     return (
-        <div className='flex items-center justify-between w-full h-[12vh] mx-auto z-[100] transition-all duration-200'>
+        <div className={`flex items-center justify-between w-full h-[12vh] fixed mx-auto z-[100]  transition-all duration-200 ${navBg ? 'bg-gray-900 shadow-md' : 'bg-transparent'}`}>
             {/* logo */}
             <h1 className='text-3xl font-bold text-white ml-8 md:ml-16'>PIXA</h1>
 
