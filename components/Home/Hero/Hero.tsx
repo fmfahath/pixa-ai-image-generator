@@ -18,6 +18,16 @@ const Hero = () => {
                     />
                     <Button variant={'default'} size={'lg'}>Generate</Button>
                 </div>
+
+                {/* tags */}
+                <div className='flex items-center mt-6 space-x-4 flex-wrap space-y-3'>
+                    <p className='self-center'>Popular Tags: </p>
+                    <Button variant={'secondary'}>Creative</Button>
+                    <Button variant={'secondary'}>Hyper reality</Button>
+                    <Button variant={'secondary'}>Steampunk</Button>
+                    <Button variant={'secondary'}>Animation</Button>
+                    <Button variant={'secondary'}>Digital Art</Button>
+                </div>
             </div>
         </div>
     )
