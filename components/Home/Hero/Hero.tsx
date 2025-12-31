@@ -1,7 +1,20 @@
+'use client';
+
 import { Button } from '@/components/ui/button'
-import React from 'react'
+import React, { useState } from 'react'
 
 const Hero = () => {
+
+    const [prompt, setPrompt] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [image, setImage] = useState('')
+
+    const handleImageGeneration = async () => {
+
+
+
+    }
+
     return (
         <div className='w-[95%] min-h-screen max-auto mt-[20vh] relative'>
             <div className='relative z-10 text-white flex flex-col items-center justify-center'>
@@ -15,6 +28,8 @@ const Hero = () => {
                         type="text"
                         placeholder='Generate your dream Image...'
                         className='w-full h-full rounded-lg outline-none text-black block flex-1 placeholder:text-sm md:placeholder:text-base'
+                        value={prompt}
+                        onChange={e => setPrompt(e.target.value)}
                     />
                     <Button variant={'default'} size={'lg'}>Generate</Button>
                 </div>
