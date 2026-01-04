@@ -10,7 +10,7 @@ const Hero = () => {
 
     const [prompt, setPrompt] = useState('')
     const [loading, setLoading] = useState(false)
-    const [image, setImage] = useState("")
+    const [imageUrl, setImageUrl] = useState("")
 
     const handleImageGeneration = async () => {
         setLoading(true);
@@ -19,7 +19,7 @@ const Hero = () => {
             method: 'POST',
             url: 'https://ai-text-to-image-generator-flux-free-api.p.rapidapi.com/aaaaaaaaaaaaaaaaaiimagegenerator/quick.php',
             headers: {
-                'x-rapidapi-key': '1f6666a003msh6d9093fd82daa37p1cfbacjsn7cd83f495c85',
+                'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY as string,
                 'x-rapidapi-host': 'ai-text-to-image-generator-flux-free-api.p.rapidapi.com',
                 'Content-Type': 'application/json'
             },
@@ -32,7 +32,7 @@ const Hero = () => {
 
         try {
             const response = await axios.request(options);
-            setImage(response.data?.result.data.results[0].origin)
+            setImageUrl(response.data?.result.data.results[0].origin)
             toast.success('Image generated successfully!');
 
         } catch (error: unknown) {
@@ -45,6 +45,17 @@ const Hero = () => {
         } finally {
             setLoading(false);
         }
+
+    }
+
+    const handleDonwload = async () => {
+        const link = document.createElement('a');
+        link.href = imageUrl;
+        link.download = 'generated-image.png';
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click()
+        document.body.removeChild(link);
 
     }
 
@@ -85,10 +96,10 @@ const Hero = () => {
 
                 {/* display result image */}
                 {
-                    image && !loading && (
+                    imageUrl && !loading && (
                         <div className='mt-8 flex flex-col items-center'>
-                            <img src={image} alt="result-image" className='max-w-full h-[500px] rounded-lg shadow-lg' loading='lazy' />
-                            <Button className='mt-4 mb-4 bg-orange-500 hover:bg-orange-800'>Download</Button>
+                            <img src={imageUrl} alt="result-image" className='max-w-full h-[500px] rounded-lg shadow-lg' loading='lazy' />
+                            <Button onClick={handleDonwload} className='mt-4 mb-4 bg-orange-500 hover:bg-orange-800'>Download</Button>
                         </div>
                     )
                 }
