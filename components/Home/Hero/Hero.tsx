@@ -77,7 +77,21 @@ const Hero = () => {
                     <Button variant={'secondary'}>Digital Art</Button>
                 </div>
 
+                {/* loading */}
+                {loading && <div className='mt-10'>
+                    <Loader className='animate-spin mt-6' />
+                </div>
+                }
 
+                {/* display result image */}
+                {
+                    image && !loading && (
+                        <div className='mt-8 flex flex-col items-center'>
+                            <img src={image} alt="result-image" className='max-w-full h-[500px] rounded-lg shadow-lg' loading='lazy' />
+                            <Button className='mt-4 mb-4 bg-orange-500 hover:bg-orange-800'>Download</Button>
+                        </div>
+                    )
+                }
             </div>
         </div>
     )
