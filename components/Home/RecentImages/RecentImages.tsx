@@ -1,4 +1,5 @@
 import React from 'react'
+import ImageSlider from './ImageSlider'
 
 const RecentImages = () => {
     return (
@@ -10,7 +11,9 @@ const RecentImages = () => {
             </div>
 
             {/* slider */}
-
+            <div className='w-[90%] md:w-[80%] max-auto mt-16'>
+                <ImageSlider />
+            </div>
         </div>
     )
 }
