@@ -1,17 +1,50 @@
-'use client';
+"use client";
 
 import { Button } from '@/components/ui/button'
+import axios from 'axios';
+import { Loader } from 'lucide-react';
 import React, { useState } from 'react'
+import { toast } from 'sonner';
 
 const Hero = () => {
 
     const [prompt, setPrompt] = useState('')
     const [loading, setLoading] = useState(false)
-    const [image, setImage] = useState('')
+    const [image, setImage] = useState("")
 
     const handleImageGeneration = async () => {
+        setLoading(true);
 
+        const options = {
+            method: 'POST',
+            url: 'https://ai-text-to-image-generator-flux-free-api.p.rapidapi.com/aaaaaaaaaaaaaaaaaiimagegenerator/quick.php',
+            headers: {
+                'x-rapidapi-key': '1f6666a003msh6d9093fd82daa37p1cfbacjsn7cd83f495c85',
+                'x-rapidapi-host': 'ai-text-to-image-generator-flux-free-api.p.rapidapi.com',
+                'Content-Type': 'application/json'
+            },
+            data: {
+                prompt: prompt,
+                style_id: 4,
+                size: '1-1'
+            }
+        };
 
+        try {
+            const response = await axios.request(options);
+            setImage(response.data?.result.data.results[0].origin)
+            toast.success('Image generated successfully!');
+
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error) && error.response) {
+                toast.error(error.response.data.message);
+            }
+            else {
+                toast.error('An unexpected error occurred. Please try again.');
+            }
+        } finally {
+            setLoading(false);
+        }
 
     }
 
@@ -31,7 +64,7 @@ const Hero = () => {
                         value={prompt}
                         onChange={e => setPrompt(e.target.value)}
                     />
-                    <Button variant={'default'} size={'lg'}>Generate</Button>
+                    <Button type='button' onClick={handleImageGeneration} variant={'default'} size={'lg'}>Generate</Button>
                 </div>
 
                 {/* tags */}
@@ -43,6 +76,8 @@ const Hero = () => {
                     <Button variant={'secondary'}>Animation</Button>
                     <Button variant={'secondary'}>Digital Art</Button>
                 </div>
+
+
             </div>
         </div>
     )
