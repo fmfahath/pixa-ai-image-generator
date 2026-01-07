@@ -2,6 +2,7 @@
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import REviewCard from './REviewCard';
 
 const responsive = {
     desktop: {
@@ -43,6 +44,15 @@ const Slider = () => {
             // itemClass="carousel-item-padding-40-px"
             arrows={true}>
 
+            <div>
+                <REviewCard image={'/images/u1.jpg'} name={"Fahath"} role={"AI engineer"} />
+            </div>
+            <div>
+                <REviewCard image={'/images/u2.jpg'} name={"Mansi"} role={"Contant Creator"} />
+            </div>
+            <div>
+                <REviewCard image={'/images/u1.jpg'} name={"John"} role={"Digital Marketer"} />
+            </div>
         </Carousel>
     );
 }
