@@ -5,6 +5,7 @@ import About from './About/About'
 import Pricing from './Pricing/Pricing'
 import Review from './Review/Review'
 import Faq from './Faq/Faq'
+import Footer from './Footer/Footer'
 
 const Home = () => {
 
@@ -16,6 +17,7 @@ const Home = () => {
             <Pricing />
             <Review />
             <Faq />
+            <Footer />
         </div>
     )
 }
