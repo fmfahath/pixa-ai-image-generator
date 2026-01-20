@@ -4,6 +4,7 @@ import RecentImages from './RecentImages/RecentImages'
 import About from './About/About'
 import Pricing from './Pricing/Pricing'
 import Review from './Review/Review'
+import Faq from './Faq/Faq'
 
 const Home = () => {
 
@@ -14,6 +15,7 @@ const Home = () => {
             <About />
             <Pricing />
             <Review />
+            <Faq />
         </div>
     )
 }
