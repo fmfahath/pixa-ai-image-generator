@@ -11,7 +11,12 @@ const RecentImages = () => {
             </div>
 
             {/* slider */}
-            <div className='w-[90%] md:w-[80%] mx-auto mt-16'>
+            <div
+                data-aos="fade-left"
+                // data-aos-anchor="#example-anchor"
+                data-aos-offset="300"
+                data-aos-duration="300"
+                className='w-[90%] md:w-[80%] mx-auto mt-16'>
                 <ImageSlider />
             </div>
         </div>
